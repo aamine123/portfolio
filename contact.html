@@ -87,8 +87,8 @@
               </div>
               <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
                 <div class="col-12">
-                  <textarea minlength="20" id="message" cols="30" rows="7" name="message" placeholder="Your Message*"
-                    required class="form-control"></textarea>
+                  <textarea id="message" cols="30" rows="7" name="message" placeholder="Your Message*" required
+                    class="form-control"></textarea>
                 </div>
 
               </div class="row" style="margin-top: 20px; margin-bottom: 20px;">
@@ -132,6 +132,7 @@
 
 
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script>
 
 
@@ -152,17 +153,37 @@
 
         $.ajax({
           type: "POST",
-          url: "/api/contact/",
+          url: "/api/contact/add",
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           dataType: "json",
-          success: function (data) { 
-            console.log("success")
-            console.log(data)
+          success: function (data) {
+            if (data.statusCode == 200) {
+              Swal.fire(
+                'Thank You!',
+                'Message Submited!',
+                'success'
+              ).then((result) => {
+                if (result) {
+                  window.location.href = "/"
+                }
+              });
+            } else {//something went wrong
+
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong :' + data.message,
+              });
+            }
           },
           error: function (errMsg) {
-            console.log("error")
-            console.log(errMsg)
+            console.log("error", errMsg)
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
           }
         });
 

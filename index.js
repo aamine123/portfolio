@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const connectDB = require('./dB/connection');
 const app = express();
 
 
@@ -16,6 +17,8 @@ app.get('/contact', function(req, res){
 
 app.use('/api/contact',require('./Controllers/contactController'))
 
+
+connectDB()
 
 app.listen(process.env.PORT || 3000)
 console.log("server started ")
