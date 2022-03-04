@@ -4537,12 +4537,9 @@ div.card-project-header.card-image{
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: #000;
-  background: linear-gradient(135deg, #000000 0%,#000000 25%,#1fa2ff 50%,#9be15d 75%,#7800a8 100%);
-  background-size: 400% 400%;
-  background-repeat: no-repeat;
+  
   display: flex;
-  width: 685px;
+  width: 100%;
   height: 400px;
   max-width: 100vw;
   max-height: 100vh;

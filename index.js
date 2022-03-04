@@ -14,5 +14,8 @@ app.get('/contact', function(req, res){
     res.sendFile('contact.html', { root: __dirname });
 });
 
+app.use('/api/contact',require('./Controllers/contactController'))
+
+
 app.listen(process.env.PORT || 3000)
 console.log("server started ")
